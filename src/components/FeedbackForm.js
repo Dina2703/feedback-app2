@@ -4,7 +4,21 @@ import Card from "./shared/Card";
 
 function FeedbackForm() {
   const [text, setText] = useState("");
+  const [btnDisabled, setBtnDisabled] = useState(true);
+  const [message, setMessage] = useState(null);
+
   const handleTextChange = (e) => {
+    if (text === "") {
+      setBtnDisabled(true);
+      setMessage(null);
+    } else if (text !== "" && text.trim().length <= 10) {
+      setBtnDisabled(true);
+      setMessage("Text must be at least 10 characters");
+    } else {
+      setMessage(null);
+      setBtnDisabled(false);
+    }
+
     setText(e.target.value);
   };
   return (
@@ -18,10 +32,11 @@ function FeedbackForm() {
             value={text}
             onChange={handleTextChange}
           />
-          <Button type="submit" version="secondary">
+          <Button type="submit" version="secondary" isDisabled={btnDisabled}>
             send
           </Button>
         </div>
+        {message && <div className="message">{message}</div>}
       </form>
     </Card>
   );
