@@ -1,12 +1,16 @@
 import "./App.css";
+import { useState } from "react";
+
 import Header from "./components/Header";
-import HeroSection from "./components/HeroSection";
+import feedbackData from "./feedbackData";
+import FeedbackList from "./components/FeedbackList";
 
 function App() {
+  const [feedback, setFeedback] = useState(feedbackData);
   return (
-    <div className="container">
+    <div className="App">
       <Header />
-      <HeroSection name="Anne" age={20} bool={true} />
+      <FeedbackList feedback={feedback} />
     </div>
   );
 }

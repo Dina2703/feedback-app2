@@ -1,10 +1,11 @@
 import React from "react";
 
-function Header({ text }) {
-  return <div> {text}</div>;
+function Header() {
+  return (
+    <div className="header">
+      <h2>Feedback UI</h2>
+    </div>
+  );
 }
 
-Header.defaultProps = {
-  text: "Default Text",
-};
 export default Header;
