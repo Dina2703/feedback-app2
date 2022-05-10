@@ -1,14 +1,21 @@
-function FeedbackItem({ item }) {
+import { FaTimes } from "react-icons/fa";
+import PropTypes from "prop-types";
+import Card from "./shared/Card";
+
+function FeedbackItem({ item, handleDelete }) {
   return (
-    <div className="container-lg">
-      <div className="row justify-content-center align-items-center ">
-        <div className="col-md-7 text-center position-relative">
-          <div className="rateStyle">{item.rating}</div>
-          <div className="rounded bg-primary m-3 p-3">{item.text}</div>
-        </div>
-      </div>
-    </div>
+    <Card>
+      <div className="num-display">{item.rating}</div>
+      <button className="close" onClick={() => handleDelete(item.id)}>
+        <FaTimes color="green" />
+      </button>
+      <div className="text-display">{item.text}</div>
+    </Card>
   );
 }
 
+FeedbackItem.propTypes = {
+  item: PropTypes.object.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+};
 export default FeedbackItem;
