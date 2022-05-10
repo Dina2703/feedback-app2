@@ -3,7 +3,7 @@ import FeedbackItem from "./FeedbackItem";
 
 function FeedbackList({ feedback, handleDelete }) {
   if (!feedback || feedback.length === 0) {
-    return <h2>No Feedback Yet</h2>;
+    return <h2 style={{ color: "green" }}>No Feedback Yet</h2>;
   }
   return (
     <div className="feedback-list">
