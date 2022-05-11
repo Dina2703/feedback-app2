@@ -1,8 +1,11 @@
 import { FaTimes } from "react-icons/fa";
 import PropTypes from "prop-types";
+import { useContext } from "react";
 import Card from "./shared/Card";
+import FeedbackContext from "../context/FeedbackContext";
 
-function FeedbackItem({ item, handleDelete }) {
+function FeedbackItem({ item }) {
+  const { handleDelete } = useContext(FeedbackContext);
   return (
     <Card>
       <div className="num-display">{item.rating}</div>
@@ -16,6 +19,5 @@ function FeedbackItem({ item, handleDelete }) {
 
 FeedbackItem.propTypes = {
   item: PropTypes.object.isRequired,
-  handleDelete: PropTypes.func.isRequired,
 };
 export default FeedbackItem;
