@@ -1,16 +1,25 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import RatingSelect from "./RatingSelect";
 import Button from "./shared/Button";
 import Card from "./shared/Card";
 import FeedbackContext from "../context/FeedbackContext";
 
 function FeedbackForm() {
-  const { handleAdd } = useContext(FeedbackContext);
-
   const [text, setText] = useState("");
   const [rating, setRating] = useState(10);
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState(null);
+  //expract global state obj/variables or functions from FeedbackContext
+  const { handleAdd, feedbackEdit, updateFeedback } =
+    useContext(FeedbackContext);
+
+  useEffect(() => {
+    if (feedbackEdit.edit === true) {
+      setBtnDisabled(false);
+      setText(feedbackEdit.item.text);
+      setRating(feedbackEdit.item.rating);
+    }
+  }, [feedbackEdit]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +29,11 @@ function FeedbackForm() {
         rating: rating,
         id: Math.random() * 1000,
       };
-      handleAdd(newFeedbackObj);
+      if (feedbackEdit.edit === true) {
+        updateFeedback(feedbackEdit.item.id, newFeedbackObj);
+      } else {
+        handleAdd(newFeedbackObj);
+      }
       setText("");
     }
   };
