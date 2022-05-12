@@ -4,6 +4,7 @@ const FeedbackContext = createContext();
 
 export const FeedbackProvider = ({ children }) => {
   //Global states, that we pass down through Context API
+  const [isLoading, setIsLoading] = useState(true);
   const [feedback, setFeedback] = useState([]);
   const [feedbackEdit, setFeedbackEdit] = useState({
     item: {},
@@ -21,6 +22,7 @@ export const FeedbackProvider = ({ children }) => {
     );
     const feedback = await response.json();
     setFeedback(feedback);
+    setIsLoading(false);
   };
 
   //handleAdd feedback function
@@ -55,6 +57,7 @@ export const FeedbackProvider = ({ children }) => {
       value={{
         feedback,
         feedbackEdit,
+        isLoading,
         handleDelete,
         handleAdd,
         handleEdit,
