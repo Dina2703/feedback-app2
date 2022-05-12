@@ -11,11 +11,6 @@
       "text": "This is feedback item 3 coming from the backend"
     },
     {
-      "text": "test from 11 Jan.",
-      "rating": 4,
-      "id": 5
-    },
-    {
       "text": "test 03.08 2022",
       "rating": 8,
       "id": 6
@@ -26,8 +21,8 @@
       "id": 7
     },
     {
-      "text": "testing may 10",
-      "rating": 6,
+      "text": "this is a updated once agin feedback",
+      "rating": 9,
       "id": 8
     }
   ]

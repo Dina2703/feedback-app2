@@ -27,7 +27,6 @@ function FeedbackForm() {
       const newFeedbackObj = {
         text: text,
         rating: rating,
-        id: Math.random() * 1000,
       };
       if (feedbackEdit.edit === true) {
         updateFeedback(feedbackEdit.item.id, newFeedbackObj);
