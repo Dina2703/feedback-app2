@@ -1,15 +1,27 @@
-import { createContext, useState } from "react";
-import feedbackData from "../feedbackData";
+import { createContext, useState, useEffect } from "react";
 
 const FeedbackContext = createContext();
 
 export const FeedbackProvider = ({ children }) => {
   //Global states, that we pass down through Context API
-  const [feedback, setFeedback] = useState(feedbackData);
+  const [feedback, setFeedback] = useState([]);
   const [feedbackEdit, setFeedbackEdit] = useState({
     item: {},
     edit: false,
   });
+
+  // useEffect with an empty dependency array to fire it once, when the component loads.
+  useEffect(() => {
+    fetchFeedback();
+  }, []);
+  //Fetch data from http://localhost:8000/feedback - endpoint
+  const fetchFeedback = async () => {
+    const response = await fetch(
+      `http://localhost:8000/feedback?_sort=id&_order=desc`
+    );
+    const feedback = await response.json();
+    setFeedback(feedback);
+  };
 
   //handleAdd feedback function
   const handleAdd = (newFeedback) => {
